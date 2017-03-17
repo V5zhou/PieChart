@@ -185,7 +185,7 @@
                                                                    NSForegroundColorAttributeName : UIColorHex(#333333),
                                                                    NSParagraphStyleAttributeName : paragraphStyle}];
             //评价
-            NSString *superStr = [NSString stringWithFormat:@"%@", ([_progressArray[i] floatValue] >= 90) ? @"优秀" : @""];
+            NSString *superStr = [NSString stringWithFormat:@"\n%@", ([_progressArray[i] floatValue] >= 90) ? @"优秀" : @""];
             if (superStr.length > 0) {
                 NSMutableAttributedString *rankAttribute = [[NSMutableAttributedString alloc]
                                                             initWithString:superStr
@@ -242,6 +242,16 @@
 - (void)setProgressArray:(NSArray<NSNumber *> *)progressArray {
     _progressArray = progressArray;
     _cornerNum = _progressArray.count;
+    [self setNeedsDisplay];
+}
+
+- (void)setFullProgressArray:(NSArray<NSNumber *> *)fullProgressArray {
+    _fullProgressArray = fullProgressArray;
+    [self setNeedsDisplay];
+}
+
+- (void)setDescriptions:(NSArray<NSString *> *)descriptions {
+    _descriptions = descriptions;
     [self setNeedsDisplay];
 }
 
