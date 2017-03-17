@@ -125,9 +125,12 @@
     NSString *timer = _minites;
     CGFloat progress = timer.floatValue/60.0;
     [self drawProgressCircleWithPoint:_centerPoint radius:_lineLength/_roundNum - 3 color:[UIColorHex(#333333) colorWithAlphaComponent:0.2] progressedColor:[UIColor whiteColor] progress:progress context:context];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.alignment = NSTextAlignmentCenter;//文本对齐方式 左右对齐（两边对齐）
     NSAttributedString *attributeText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n分钟", _minites]
                                                                         attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:10],
-                                                                                     NSForegroundColorAttributeName : [UIColor whiteColor]}];
+                                                                                     NSForegroundColorAttributeName : [UIColor whiteColor],
+                                                                                     NSParagraphStyleAttributeName : paragraphStyle}];
     CGRect textRect = [self rectForAttributeText:attributeText centerPoint:_centerPoint];
     [attributeText drawInRect:textRect];
 }
@@ -166,7 +169,7 @@
     return rect;
 }
 
-#pragma mark - 由技术统计数据--->长度与value值
+#pragma mark - 由progress数据--->长度与value值
 - (void)GetsLengths:(NSMutableArray<NSNumber *> **)lengths attributes:(NSMutableArray<NSAttributedString *> **)attributes {
     if (_progressArray && _progressArray.count == _cornerNum) {
         *lengths = [NSMutableArray array];
