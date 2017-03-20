@@ -111,9 +111,9 @@
 //        if (length > _innerSpace + 14) {
 //            length -= 14;   //向里收缩,防止文字跑大饼外面出去
 //        }
-//        if (length < _innerSpace + 8) {
-//            length = _innerSpace + 8;   //向外拉5，防止压住时间圈
-//        }
+        if (length < _innerSpace + 8) {
+            length = _innerSpace + 8;   //向外拉5，防止压住时间圈
+        }
         CGPoint point = [self pointForCornerIndex:i length:length];
         CGRect textRect = [self rectForAttributeText:attributes[i] centerPoint:point];
         [attributes[i] drawInRect:textRect];

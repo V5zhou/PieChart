@@ -42,7 +42,9 @@
     NSMutableArray *descriptionArray = [NSMutableArray array];
     NSMutableArray *fullArray = [NSMutableArray array];
     NSMutableArray *dataArray = [NSMutableArray array];
-    for (NSInteger i = 0; i < (arc4random()%descriptions.count + 3); i++) {
+    NSInteger count = arc4random()%descriptions.count + 1;
+    count = MAX(3, count);
+    for (NSInteger i = 0; i < count; i++) {
         [descriptionArray addObject:descriptions[i]];
         [fullArray addObject:@(100)];       //全都100为满分
         [dataArray addObject:@(arc4random()%100 + 1)];
